@@ -20,7 +20,7 @@ const Expenses = ({ items }) => {
   return (
 
     <div>
-      <Card className="expenses"> 
+      <Card className="expenses">
         <ExpensesFilter
           onChangeFilter={filterChangeHandler}
           selected={filteredYear}
@@ -28,16 +28,18 @@ const Expenses = ({ items }) => {
 
         {
           items
-            .filter(item => new Date(item.date).getFullYear() === parseInt(filteredYear))
-            .map((item, index) => (
+            .filter(item => item.date.getFullYear().toString() === filteredYear)
+            .map((item) => (
 
               <ExpenseItem
-                key={index}
+                key={item.id}
                 title={item.title}
                 amount={item.amount}
                 date={item.date}
               />
-            ))}
+            ))
+
+        }
       </Card>
     </div>
   );
